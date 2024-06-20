@@ -26,6 +26,11 @@ public class Bai2 {
 
     public static void main(String[] args) {
         String[] arrayString = {"Red", "Green", "Blue", "Yellow", "Green", "Yellow"};
-        System.out.println(sortArray(arrayString));
+
+        String[] result = sortArray(arrayString);
+
+        for (int i = 0; i < result.length; i++) {
+            System.out.println(result[i]);
+        }
     }
 }
