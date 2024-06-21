@@ -1,7 +1,5 @@
 package Day3;
 
-import Day3.Lib.Sport;
-
 public class Main {
     static abstract class Assembly{
         String name;
