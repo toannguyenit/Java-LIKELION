@@ -18,7 +18,7 @@ public class Bai1 {
 
     public static void main(String[] args) {
 //         Neu khong muon nhap co the dung mang ben duoi de test nhanh bang cach loai bo 2 comment ben duoi
-//         int[] intArray = {1,2,3,4,5,6,7,8,9};
+//         int[] intArray = {5,1,8,4,9,1,5};
 //         System.out.println(filterDistinctAndReturnSum(intArray));
 
         Scanner scanner = new Scanner(System.in);

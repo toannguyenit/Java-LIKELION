@@ -6,21 +6,20 @@ import java.io.FileReader;
 
 public class TryCatchLession {
 
-    static  void readFile() throws FileNotFoundException {
+
+    public static void main(String[] args){
+
+        int a = 10;
+        int b = 0;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
-            System.out.println("");
-            throw new FileNotFoundException();
+            System.out.println(a/b);
+        }catch (RuntimeException ex){
+            System.out.println("Error: " + ex.getMessage());
+//            ex.printStackTrace();
         }
-
-        catch(Exception e){
-            System.out.println(e);
+        finally {
+            System.out.println("Xin chao");
         }
-
-    }
-
-    public static void main(String[] args) throws FileNotFoundException {
-        readFile();
     }
 
 }

@@ -9,7 +9,7 @@ public class Bai4 {
         String result = "";
         Set<String> set = new HashSet<>();
         for (int i = 0; i < str.length(); i++) {
-          if(  set.add(String.valueOf(str.charAt(i)))) {
+          if(set.add(String.valueOf(str.charAt(i)))) {
               result += str.charAt(i);
           }
         }
