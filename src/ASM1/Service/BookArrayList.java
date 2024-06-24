@@ -9,7 +9,9 @@ import java.util.ArrayList;
 public class BookArrayList implements InterfaceBook {
 
     ArrayList<Book> books;
-    public BookArrayList() {}
+
+    public BookArrayList() {
+    }
 
     public BookArrayList(ArrayList<Book> books) {
         this.books = books;
@@ -25,11 +27,31 @@ public class BookArrayList implements InterfaceBook {
 
     @Override
     public void addBook(Book book) {
+        if (book.getIdName().length() > 5) {
+            throw new IllegalArgumentException("Book ID phai < 5 characters");
+        }
+        if (book.getTitle().length() > 20) {
+            throw new IllegalArgumentException("Title exceeds 20 characters");
+        }
+        if (book.getAuthor().length() > 15) {
+            throw new IllegalArgumentException("Author exceeds 15 characters");
+        }
+        if (book.getQuantity() < 0 || book.getQuantity() > 150) {
+            throw new IllegalArgumentException("Quantity > 0 and < 150");
+        }
+        if (book.getName().length() > 25) {
+            throw new IllegalArgumentException("Name exceeds 25 characters");
+        }
         books.add(book);
     }
 
     @Override
     public void showBooksDisplay() {
+        if (books == null) {
+            System.out.println("Book List is empty");
+            return;
+        }
+
         int stt = 1;
         System.out.println("=---------------------------------------------------------------=");
         System.out.println("=                         DANH SACH SACH                        =");
@@ -48,6 +70,20 @@ public class BookArrayList implements InterfaceBook {
     public void updateBook(Book book) {
         for (Book bookCurrent : books) {
             if (bookCurrent.getIdName().equals(book.getIdName())) {
+                if (book.getTitle().length() > 20) {
+                    throw new IllegalArgumentException("Title exceeds 20 characters");
+                }
+                if (book.getAuthor().length() > 15) {
+                    throw new IllegalArgumentException("Author exceeds 15 characters");
+                }
+                if (book.getQuantity() < 0 || book.getQuantity() > 150) {
+                    throw new IllegalArgumentException("Quantity > 0 and < 150");
+                }
+                if (book.getName().length() > 25) {
+                    throw new IllegalArgumentException("Name exceeds 25 characters");
+                }
+
+
                 if (!(book.getTitle().equals("0"))) {
                     bookCurrent.setTitle(book.getTitle());
                 }
@@ -70,6 +106,9 @@ public class BookArrayList implements InterfaceBook {
 
     @Override
     public void deleteBook(String idBook) {
+        if (idBook.length() > 5) {
+            throw new ArithmeticException("IdBook phai < 5 ky tu");
+        }
         ArrayList<Book> tempBooks = new ArrayList<>();
         for (Book book : books) {
             tempBooks.add(book);
@@ -96,15 +135,18 @@ public class BookArrayList implements InterfaceBook {
 
     @Override
     public Book findBookByIdName(String idBookName) {
+        if (idBookName.length() > 5) {
+            throw new ArithmeticException("IdBook phai < 5 ky tu");
+        }
         Book book = new Book();
-        for (Book book1 : books) {
-            if (book1.getName().equals(idBookName)) {
-                book.setIdName(book1.getIdName());
-                book.setTitle(book1.getTitle());
-                book.setName(book1.getName());
-                book.setAuthor(book1.getAuthor());
-                book.setDescription(book1.getDescription());
-                book.setQuantity(book1.getQuantity());
+        for (Book bookCurrent : books) {
+            if (bookCurrent.getIdName().equals(idBookName)) {
+                book.setIdName(bookCurrent.getIdName());
+                book.setTitle(bookCurrent.getTitle());
+                book.setName(bookCurrent.getName());
+                book.setAuthor(bookCurrent.getAuthor());
+                book.setDescription(bookCurrent.getDescription());
+                book.setQuantity(bookCurrent.getQuantity());
             }
         }
         return book;

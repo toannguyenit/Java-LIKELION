@@ -183,32 +183,49 @@ public class Main {
         bookArrayList.showBooksDisplay();
     }
 
-    static void addBook() {
-        //Book book = new Book("Truyen hai", "Trang Quynh", "Le Thu Ha", "Truyen hai dan gian", 1000);
-        Book book = inputBook();
-        bookArrayList.addBook(book);
+    static void addBook() throws ArithmeticException {
+        try {
+            //Book book = new Book("Truyen hai", "Trang Quynh", "Le Thu Ha", "Truyen hai dan gian", 1000);
+            Book book = inputBook();
+            bookArrayList.addBook(book);
+        } catch (ArithmeticException ignored) {
+            System.out.println("Loi: " + ignored.getMessage());
+        }
     }
 
     static void showBooksDisplay() {
         bookArrayList.showBooksDisplay();
     }
 
-    static void deleteBook() {
-        System.out.print("Vui long nhap ID book can xoa: ");
-        String idBook = scanner.nextLine();
-        bookArrayList.deleteBook(idBook);
-        showBooksDisplay();
+    static void deleteBook() throws ArithmeticException {
+        try {
+            System.out.print("Vui long nhap ID book can xoa: ");
+            String idBook = scanner.nextLine();
+            bookArrayList.deleteBook(idBook);
+            showBooksDisplay();
+        } catch (ArithmeticException ignored) {
+            System.out.println("Loi: " + ignored.getMessage());
+        }
     }
 
-    static void updateBook() {
-        System.out.print("Vui long nhap ID book can sua: ");
-        String idBook = scanner.nextLine();
-        Book book = bookArrayList.findBookByIdName(idBook);
-        book.showInformation();
-        System.out.println("Duoi day la phan thay doi thong tin, neu nhu khong muon thay doi thong tin cua mot cot nao, hay nhap '0' ");
-        Book bookUpdate = inputUpdateBook();
-        bookUpdate.setIdName(idBook);
-        bookArrayList.updateBook(bookUpdate);
+    static void updateBook() throws ArithmeticException {
+        try {
+            System.out.print("Vui long nhap ID book can sua: ");
+            String idBook = scanner.nextLine();
+            Book book = bookArrayList.findBookByIdName(idBook);
+            if (book.getName() == null) {
+                System.out.println("Book not found");
+                return;
+            }
+            book.showInformation();
+            System.out.println("Duoi day la phan thay doi thong tin, neu nhu khong muon thay doi thong tin cua mot cot nao, hay nhap '0' ");
+            Book bookUpdate = inputUpdateBook();
+            bookUpdate.setIdName(idBook);
+            bookArrayList.updateBook(bookUpdate);
+        } catch (ArithmeticException ignored) {
+            System.out.println("Loi: " + ignored.getMessage());
+        }
+
     }
 
     static void returnBook() {
@@ -234,28 +251,50 @@ public class Main {
         customerArrayList.showCustomersDisplay();
     }
 
-    static void findCustomer() {
-        System.out.print("Vui long nhap ma khach hang - ID: ");
-        String idName = scanner.nextLine();
-        Customer customerFind = customerArrayList.findCustomerByIdName(idName);
-        customerFind.showInformation();
+    static void findCustomer() throws ArithmeticException {
+        try {
+            System.out.print("Vui long nhap ma khach hang - ID: ");
+            String idName = scanner.nextLine();
+            Customer customer = customerArrayList.findCustomerByIdName(idName);
+            if (customer.getFullName() == null) {
+                System.out.println("Khach hang khong ton tai");
+                return;
+            }
+            customer.showInformation();
+        } catch (ArithmeticException ignored) {
+            System.out.println("Loi: " + ignored.getMessage());
+        }
     }
 
-    static void addCustomer() {
-        Customer customer = inputCustomer();
-        customerArrayList.addCustomer(customer);
-        customerArrayList.showCustomersDisplay();
+    static void addCustomer() throws ArithmeticException {
+        try {
+            Customer customer = inputCustomer();
+            customerArrayList.addCustomer(customer);
+            customerArrayList.showCustomersDisplay();
+        } catch (ArithmeticException ignored) {
+            System.out.println("Loi: " + ignored.getMessage());
+            System.out.println("Them khach hang khong thanh cong!!");
+        }
     }
 
-    static void updateCustomer() {
-        System.out.print("Vui long nhap ma khach hang - ID: ");
-        String idCustomer = scanner.nextLine();
-        Customer customer = customerArrayList.findCustomerByIdName(idCustomer);
-        customer.showInformation();
-        System.out.println("Duoi day la phan thay doi thong tin, neu nhu khong muon thay doi thong tin cua mot cot nao, hay nhap '0' ");
-        Customer customerUpdate = inputUpdateCustomer();
-        customerUpdate.setIdName(idCustomer);
-        customerArrayList.updateCustomer(customerUpdate);
+    static void updateCustomer() throws ArithmeticException {
+        try {
+            System.out.print("Vui long nhap ma khach hang - ID: ");
+            String idCustomer = scanner.nextLine();
+            Customer customer = customerArrayList.findCustomerByIdName(idCustomer);
+            if (customer.getFullName() == null) {
+                System.out.println("Khach hang khong ton tai");
+                return;
+            }
+            customer.showInformation();
+            System.out.println("Duoi day la phan thay doi thong tin, neu nhu khong muon thay doi thong tin cua mot cot nao, hay nhap '0' ");
+            Customer customerUpdate = inputUpdateCustomer();
+            customerUpdate.setIdName(idCustomer);
+            customerArrayList.updateCustomer(customerUpdate);
+        } catch (ArithmeticException ignored) {
+            System.out.println("Loi: " + ignored.getMessage());
+            System.out.println("Cap nhat that bai!!");
+        }
     }
 
     public static void main(String[] args) {

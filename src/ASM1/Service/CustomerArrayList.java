@@ -29,6 +29,10 @@ public class CustomerArrayList implements InterfaceCustomer {
     @Override
     public void hireBook(String idNameCustomer, int quantity, String idNameBook, ArrayList<Book> bookArrayList, int daysQuantity) {
         Customer customer = findCustomerByIdName(idNameCustomer);
+        if (customer.getFullName() == null) {
+            System.out.println("Khach hang khong ton tai");
+            return;
+        }
         if (customer.getAge() < 16) {
             throw new ArithmeticException("The customer age must be at least 16 years");
         }
@@ -66,14 +70,27 @@ public class CustomerArrayList implements InterfaceCustomer {
     @Override
     public void addCustomer(Customer customerExample) {
         Customer customer = new Customer();
+        if (customerExample.getIdName().length() > 5) {
+            throw new ArithmeticException("Ten ID phai < 5 ky tu!");
+        }
+        if (customerExample.getFullName().length() < 25) {
+            throw new ArithmeticException("Ten khach hang phai < 25 ky tu!");
+        }
+
         customer.setIdName(customerExample.getIdName());
         customer.setFullName(customerExample.getFullName());
         customer.setAge(customerExample.getAge());
         customers.add(customer);
     }
 
+
+
     @Override
     public void showCustomersDisplay() {
+        if (customers == null) {
+            System.out.println("Khach hang khong ton tai");
+            return;
+        }
         int stt = 1;
         System.out.println("=---------------------------------------------------------------=");
         System.out.println("=                    DANH SACH KHACH HANG                       =");
@@ -88,15 +105,22 @@ public class CustomerArrayList implements InterfaceCustomer {
     }
 
     @Override
-    public void updateCustomer(Customer customer) {
+    public void updateCustomer(Customer customerExample) {
         for (Customer customersCurrent : customers) {
-            if (customersCurrent.getIdName().equals(customer.getIdName())) {
-
-                if (!(customer.getFullName().equals("0"))) {
-                    customersCurrent.setFullName(customer.getFullName());
+            if (customersCurrent.getIdName().equals(customerExample.getIdName())) {
+                if (customerExample.getIdName().length() > 5) {
+                    throw new ArithmeticException("Ten ID phai < 5 ky tu!");
                 }
-                if (!(customer.getAge() == 0)) {
-                    customersCurrent.setAge(customer.getAge());
+                if (customerExample.getFullName().length() < 25) {
+                    throw new ArithmeticException("Ten khach hang phai < 25 ky tu!");
+                }
+
+
+                if (!(customerExample.getFullName().equals("0"))) {
+                    customersCurrent.setFullName(customerExample.getFullName());
+                }
+                if (!(customerExample.getAge() == 0)) {
+                    customersCurrent.setAge(customerExample.getAge());
                 }
             }
         }
@@ -104,6 +128,9 @@ public class CustomerArrayList implements InterfaceCustomer {
 
     @Override
     public Customer findCustomerByIdName(String idName) {
+        if (idName.length() > 5) {
+            throw new ArithmeticException("Ten ID phai < 5 ky tu!");
+        }
         Customer customer = new Customer();
         for (Customer c : customers) {
             if (c.getIdName().equals(idName)) {
@@ -111,17 +138,19 @@ public class CustomerArrayList implements InterfaceCustomer {
                 customer.setFullName(c.getFullName());
                 customer.setAge(c.getAge());
                 customer.setHireBooks(c.getHireBooks());
-                return customer;
             }
         }
 
-        customer.showInformation();
         return customer;
     }
 
     @Override
     public void returnBook(String idNameCustomer, String idNameBook, ArrayList<Book> bookArrayList, int quantityReturn) {
         Customer customer = findCustomerByIdName(idNameCustomer);
+        if (customer.getFullName() == null) {
+            System.out.println("Khach hang khong ton tai");
+            return;
+        }
         ArrayList<HireBook> hireBooks = customer.getHireBooks();
         if (hireBooks == null) {
             hireBooks = new ArrayList<>();
