@@ -74,4 +74,13 @@ public class Book {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void showInformation(){
+        System.out.println("=---------------------------------------------------------------=");
+        System.out.println("=                          CHI TIET SACH                        =");
+        System.out.println("=---------------------------------------------------------------=");
+        System.out.printf("%-3s %-8s %-25s %-15s %-10s%n", "STT", "IdBook", "BookName", "Author", "Quantity");
+        System.out.printf("%-3d %-8s %-25s %-15s %-10d%n", 0, idName, name, author, quantity);
+        System.out.println("=---------------------------------------------------------------=");
+    }
 }

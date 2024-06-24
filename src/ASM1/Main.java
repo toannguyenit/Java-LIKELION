@@ -28,8 +28,9 @@ public class Main {
         System.out.println("+ 5. Them Sach                             +");
         System.out.println("+ 6. Xem danh sach Sach                    +");
         System.out.println("+ 7. Sua thong tin Sach                    +");
-        System.out.println("+ 8. Thue Sach                             +");
-        System.out.println("+ 9. Tra Sach                              +");
+        System.out.println("+ 8. Xoa sach                              +");
+        System.out.println("+ 9. Thue Sach                             +");
+        System.out.println("+ 10. Tra Sach                             +");
         System.out.println("+ 0. Thoat                                 +");
         System.out.println("=------------------------------------------=");
     }
@@ -55,8 +56,8 @@ public class Main {
 
     static ArrayList<Book> initBookArrayList() {
         ArrayList<Book> books = new ArrayList<>();
-        books.add(new Book("B01", "Truyen tranh", "Doreamon1", "Tuan Mentor", "Truyen ke ve Mot cau be Nobita va Doreamon", 100));
-        books.add(new Book("B02", "Truyen tranh", "Doreamon2", "Tuan Mentor", "Truyen ke ve Mot cau be Nobita va Doreamon", 100));
+        books.add(new Book("B01", "Truyen tranh", "Doreamon1", "Tuan Mentor", "Truyen ke ve Mot cau be Nobita va Doreamon", 97));
+        books.add(new Book("B02", "Truyen tranh", "Doreamon2", "Tuan Mentor", "Truyen ke ve Mot cau be Nobita va Doreamon", 98));
         books.add(new Book("B03", "Truyen tranh", "Doreamon3", "Tuan Mentor", "Truyen ke ve Mot cau be Nobita va Doreamon", 100));
         books.add(new Book("B04", "Truyen tranh", "Doreamon4", "Tuan Mentor", "Truyen ke ve Mot cau be Nobita va Doreamon", 100));
         books.add(new Book("B05", "Truyen ma", "Ngoi nha co mo 1", "Duong Mentor", "Truyen ke ve mot ngoi nha Ma", 100));
@@ -88,6 +89,29 @@ public class Main {
         customer.setAge(age);
         return customer;
     }
+
+    static Book inputUpdateBook() {
+        Book book = new Book();
+        System.out.print("Vui long nhap title: ");
+        String title = scanner.nextLine();
+        System.out.print("Vui long ten sach: ");
+        String name = scanner.nextLine();
+        System.out.print("Vui long nhap tac gia: ");
+        String author = scanner.nextLine();
+        System.out.print("Vui long nhap mo ta: ");
+        String description = scanner.nextLine();
+        System.out.print("Vui long nhap so luong: ");
+        int quantity = scanner.nextInt();
+        scanner.nextLine();
+
+        book.setTitle(title);
+        book.setName(name);
+        book.setAuthor(author);
+        book.setQuantity(quantity);
+        book.setDescription(description);
+        return book;
+    }
+
     static Customer inputUpdateCustomer() {
         Customer customer = new Customer();
         System.out.print("Vui long nhap ten: ");
@@ -98,7 +122,6 @@ public class Main {
         customer.setAge(age);
         return customer;
     }
-
 
     static Book inputBook() {
         Book book = new Book();
@@ -129,11 +152,11 @@ public class Main {
         return book;
     }
 
-    static void clearDisplay(){
+    static void clearDisplay() {
         System.out.println("======================================================================================");
     }
 
-    static void hireBook(){
+    static void hireBook() {
         System.out.print("Vui long nhap ID khach hang: ");
         String idNameCustomer = scanner.nextLine();
 
@@ -151,51 +174,87 @@ public class Main {
         try {
             customerArrayList.hireBook(idNameCustomer, quantity, idNameBook, bookArrayList.getBooks(), days);
             System.out.println("Thong tin co ban: idBookName: " + idNameBook + ", quantity: " + quantity + ", days: " + days);
-        }
-        catch (ArithmeticException ignored) {
+        } catch (ArithmeticException ignored) {
             System.out.println("Loi: " + ignored.getMessage());
-            System.out.println("Khach hang chua du tuoi de thue!!");
+            System.out.println("Thue sach that bai!!");
             return;
         }
         bookArrayList.hireBook(idNameBook, quantity);
         bookArrayList.showBooksDisplay();
     }
 
-    static void addBook(){
+    static void addBook() {
         //Book book = new Book("Truyen hai", "Trang Quynh", "Le Thu Ha", "Truyen hai dan gian", 1000);
         Book book = inputBook();
         bookArrayList.addBook(book);
     }
 
-    static void showBooksDisplay(){
+    static void showBooksDisplay() {
         bookArrayList.showBooksDisplay();
     }
 
-    static void showCustomersDisplay(){
+    static void deleteBook() {
+        System.out.print("Vui long nhap ID book can xoa: ");
+        String idBook = scanner.nextLine();
+        bookArrayList.deleteBook(idBook);
+        showBooksDisplay();
+    }
+
+    static void updateBook() {
+        System.out.print("Vui long nhap ID book can sua: ");
+        String idBook = scanner.nextLine();
+        Book book = bookArrayList.findBookByIdName(idBook);
+        book.showInformation();
+        System.out.println("Duoi day la phan thay doi thong tin, neu nhu khong muon thay doi thong tin cua mot cot nao, hay nhap '0' ");
+        Book bookUpdate = inputUpdateBook();
+        bookUpdate.setIdName(idBook);
+        bookArrayList.updateBook(bookUpdate);
+    }
+
+    static void returnBook() {
+        System.out.print("Vui long nhap ID khach hang tra sach: ");
+        String idCustomer = scanner.nextLine();
+        System.out.print("Vui long nhap ID book can tra: ");
+        String idBook = scanner.nextLine();
+        System.out.print("Vui long nhap so luong can tra: ");
+        int quantity = scanner.nextInt();
+
+        try {
+            customerArrayList.returnBook(idCustomer, idBook, bookArrayList.getBooks(), quantity);
+        } catch (ArithmeticException ignored) {
+            System.out.println("Loi: " + ignored.getMessage());
+            System.out.println("Tra sach khong thanh cong!!");
+            return;
+        }
+        bookArrayList.returnBook(idBook, quantity);
+
+    }
+
+    static void showCustomersDisplay() {
         customerArrayList.showCustomersDisplay();
     }
 
-    static void findCustomer(){
+    static void findCustomer() {
         System.out.print("Vui long nhap ma khach hang - ID: ");
         String idName = scanner.nextLine();
         Customer customerFind = customerArrayList.findCustomerByIdName(idName);
         customerFind.showInformation();
     }
 
-    static void addCustomer(){
+    static void addCustomer() {
         Customer customer = inputCustomer();
         customerArrayList.addCustomer(customer);
         customerArrayList.showCustomersDisplay();
     }
 
-    static void updateCustomer(){
+    static void updateCustomer() {
         System.out.print("Vui long nhap ma khach hang - ID: ");
-        String idNameCase4 = scanner.nextLine();
-        Customer customerFindCase4 = customerArrayList.findCustomerByIdName(idNameCase4);
-        customerFindCase4.showInformation();
+        String idCustomer = scanner.nextLine();
+        Customer customer = customerArrayList.findCustomerByIdName(idCustomer);
+        customer.showInformation();
         System.out.println("Duoi day la phan thay doi thong tin, neu nhu khong muon thay doi thong tin cua mot cot nao, hay nhap '0' ");
         Customer customerUpdate = inputUpdateCustomer();
-        customerUpdate.setIdName(idNameCase4);
+        customerUpdate.setIdName(idCustomer);
         customerArrayList.updateCustomer(customerUpdate);
     }
 
@@ -233,13 +292,16 @@ public class Main {
                     showBooksDisplay();
                     break;
                 case 7:
-                    bookArrayList.showBooksDisplay();
+                    updateBook();
                     break;
                 case 8:
-                    hireBook();
+                    deleteBook();
                     break;
                 case 9:
-                    // todo
+                    hireBook();
+                    break;
+                case 10:
+                    returnBook();
                     break;
                 default:
                     functionCodeNumber = -1;

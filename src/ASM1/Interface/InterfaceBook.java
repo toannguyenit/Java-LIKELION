@@ -10,11 +10,13 @@ public interface InterfaceBook {
 
     public void showBooksDisplay();
 
-    public void updateBook(int id);
+    public void updateBook(Book book);
 
-    public void deleteBook(int id);
+    public void deleteBook(String idBook);
 
     public void hireBook(String idBookName, int quantity);
 
     public Book findBookByIdName(String idBookName);
+
+    public void returnBook(String idBook, int quantity);
 }

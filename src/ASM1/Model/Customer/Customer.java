@@ -61,7 +61,6 @@ public class Customer {
     }
 
     public void showInformation(){
-
         System.out.println("=---------------------------------------------------------------=");
         System.out.println("=                    CHI TIET KHACH HANG                        =");
         System.out.println("=---------------------------------------------------------------=");
@@ -74,14 +73,12 @@ public class Customer {
         String returnString = "";
         if (hireBooks != null && !hireBooks.isEmpty()){
             for (HireBook hireBook : hireBooks) {
-                returnString += hireBook.getIdBook() + ",";
+                returnString += hireBook.getIdBook() + "-"+ hireBook.getQuantity()+",";
             }
         }
         else {
             returnString = "Chưa thuê";
         }
-
-
         return returnString;
     }
 }

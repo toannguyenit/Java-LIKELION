@@ -17,4 +17,6 @@ public interface InterfaceCustomer {
 
     public Customer findCustomerByIdName(String idName);
 
+    public void returnBook(String idNameCustomer, String idNameBook, ArrayList<Book> bookArrayList, int quantityReturn);
+
 }

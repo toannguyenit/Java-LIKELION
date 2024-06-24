@@ -8,11 +8,11 @@ import ASM1.Model.Customer.HireBook;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class CustomerArrayList implements InterfaceCustomer
-{
+public class CustomerArrayList implements InterfaceCustomer {
     static ArrayList<Customer> customers;
 
-    public CustomerArrayList(){}
+    public CustomerArrayList() {
+    }
 
     public CustomerArrayList(ArrayList<Customer> customers) {
         this.customers = customers;
@@ -27,16 +27,25 @@ public class CustomerArrayList implements InterfaceCustomer
     }
 
     @Override
-    public void hireBook(String idNameCustomer, int quantity ,String idNameBook, ArrayList<Book> bookArrayList, int daysQuantity) {
+    public void hireBook(String idNameCustomer, int quantity, String idNameBook, ArrayList<Book> bookArrayList, int daysQuantity) {
         Customer customer = findCustomerByIdName(idNameCustomer);
         if (customer.getAge() < 16) {
             throw new ArithmeticException("The customer age must be at least 16 years");
         }
         ArrayList<HireBook> hireBooks = customer.getHireBooks();
+        if (hireBooks == null) {
+            hireBooks = new ArrayList<>();
+            customer.setHireBooks(hireBooks); // Ensure the customer object is updated with the new list
+        }
+
         for (Book book : bookArrayList) {
-            if (book.getName().equals(idNameBook)) {
+            if (book.getIdName().equals(idNameBook)) {
                 HireBook hireBook = new HireBook();
                 hireBook.setIdBook(book.getIdName());
+                int quantityBookCurrent = book.getQuantity();
+                if (quantityBookCurrent < quantity) {
+                    throw new ArithmeticException("So luong thue qua muc ton kho, phai < " + quantityBookCurrent);
+                }
                 hireBook.setQuantity(quantity);
                 hireBook.setDaysHire(daysQuantity);
                 hireBook.setDateTime(LocalDateTime.now());
@@ -44,7 +53,6 @@ public class CustomerArrayList implements InterfaceCustomer
             }
         }
         customer.setHireBooks(hireBooks);
-
         for (Customer customerCurrent : customers) {
             if (customerCurrent.getIdName().equals(idNameCustomer)) {
                 System.out.println("Ma Sach: " + customer.getHireBooksToString());
@@ -73,7 +81,6 @@ public class CustomerArrayList implements InterfaceCustomer
         System.out.printf("%-5s %-10s %-25s %-5s %-20s %n", "STT", "Id", "FullName", "Age", "Hire Books");
         for (Customer customer : customers) {
             String hireBooks = customer.getHireBooksToString();
-
             System.out.printf("%-5d %-10s %-25s %-5d %-20s%n", stt, customer.getIdName(), customer.getFullName(), customer.getAge(), hireBooks);
             stt++;
         }
@@ -110,5 +117,43 @@ public class CustomerArrayList implements InterfaceCustomer
 
         customer.showInformation();
         return customer;
+    }
+
+    @Override
+    public void returnBook(String idNameCustomer, String idNameBook, ArrayList<Book> bookArrayList, int quantityReturn) {
+        Customer customer = findCustomerByIdName(idNameCustomer);
+        ArrayList<HireBook> hireBooks = customer.getHireBooks();
+        if (hireBooks == null) {
+            hireBooks = new ArrayList<>();
+            customer.setHireBooks(hireBooks); // Ensure the customer object is updated with the new list
+        } else {
+            for (HireBook hireBook : hireBooks) {
+                if (hireBook.getIdBook().equals(idNameBook)) {
+                    if (hireBook.getQuantity() < quantityReturn) {
+                        throw new ArithmeticException("Loi: So luong sach tra phai < so luong sach da muon ");
+                    }
+                    int quantityChanged = hireBook.getQuantity() - quantityReturn;
+                    hireBook.setQuantity(quantityChanged);
+                }
+            }
+            ArrayList<HireBook> newHireBooks = new ArrayList<>();
+            for (HireBook hireBook : hireBooks) {
+                newHireBooks.add(hireBook);
+            }
+
+            for (HireBook hireBook : newHireBooks) {
+                if (hireBook.getQuantity() == 0) {
+                    hireBooks.remove(hireBook);
+                }
+            }
+        }
+
+        for (Customer customerCurrent : customers) {
+            if (customerCurrent.getIdName().equals(idNameCustomer)) {
+                customerCurrent.setHireBooks(hireBooks);
+            }
+        }
+
+        System.out.println("Da tra thanh cong!");
     }
 }

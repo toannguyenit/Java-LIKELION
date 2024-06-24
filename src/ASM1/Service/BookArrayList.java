@@ -2,6 +2,7 @@ package ASM1.Service;
 
 import ASM1.Interface.InterfaceBook;
 import ASM1.Model.Book.Book;
+import ASM1.Model.Customer.Customer;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class BookArrayList implements InterfaceBook {
         System.out.println("=---------------------------------------------------------------=");
         System.out.println("=                         DANH SACH SACH                        =");
         System.out.println("=---------------------------------------------------------------=");
-        System.out.printf("%-3s %-8s %-25s %-15s %-10s%n", "STT", "idBook", "bookName", "Author", "Quantity");
+        System.out.printf("%-3s %-8s %-25s %-15s %-10s%n", "STT", "IdBook", "BookName", "Author", "Quantity");
         for (Book book : books) {
 //            System.out.print(stt + ". " + " - idBook: " + book.getIdName() + " - bookName: "  + book.getName() + " - Author:" + book.getAuthor() +" - Quantity: " + book.getQuantity() + "\n");
             System.out.printf("%-3d %-8s %-25s %-15s %-10d%n", stt, book.getIdName(), book.getName(), book.getAuthor(), book.getQuantity());
@@ -44,13 +45,41 @@ public class BookArrayList implements InterfaceBook {
     }
 
     @Override
-    public void updateBook(int id) {
+    public void updateBook(Book book) {
+        for (Book bookCurrent : books) {
+            if (bookCurrent.getIdName().equals(book.getIdName())) {
+                if (!(book.getTitle().equals("0"))) {
+                    bookCurrent.setTitle(book.getTitle());
+                }
+                if (!(book.getName().equals("0"))) {
+                    bookCurrent.setName(book.getName());
+                }
+                if (!(book.getDescription().equals("0"))) {
+                    bookCurrent.setDescription(book.getDescription());
+                }
+                if (!(book.getAuthor().equals("0"))) {
+                    bookCurrent.setAuthor(book.getAuthor());
+                }
+                if (!(book.getQuantity() == 0)) {
+                    bookCurrent.setQuantity(book.getQuantity());
+                }
+            }
+        }
 
     }
 
     @Override
-    public void deleteBook(int id) {
-
+    public void deleteBook(String idBook) {
+        ArrayList<Book> tempBooks = new ArrayList<>();
+        for (Book book : books) {
+            tempBooks.add(book);
+        }
+        for (Book book : tempBooks) {
+            if (book.getIdName().equals(idBook)) {
+                books.remove(book);
+            }
+        }
+        System.out.println("Deleted " + idBook);
     }
 
     @Override
@@ -81,7 +110,15 @@ public class BookArrayList implements InterfaceBook {
         return book;
     }
 
-
+    @Override
+    public void returnBook(String idBook, int quantity) {
+        for (Book book : this.books) {
+            if (book.getIdName().equals(idBook)) {
+                int quantityBook = book.getQuantity() + quantity;
+                book.setQuantity(quantityBook);
+            }
+        }
+    }
 
 
 }
