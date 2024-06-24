@@ -7,7 +7,6 @@ import ASM1.Model.Customer.HireBook;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CustomerArrayList implements InterfaceCustomer
 {
@@ -31,14 +30,13 @@ public class CustomerArrayList implements InterfaceCustomer
     public void hireBook(String idNameCustomer, int quantity ,String idNameBook, ArrayList<Book> bookArrayList, int daysQuantity) {
         Customer customer = findCustomerByIdName(idNameCustomer);
         if (customer.getAge() < 16) {
-            throw new RuntimeException("The customer age must be at least 16 years");
+            throw new ArithmeticException("The customer age must be at least 16 years");
         }
         ArrayList<HireBook> hireBooks = customer.getHireBooks();
-
         for (Book book : bookArrayList) {
             if (book.getName().equals(idNameBook)) {
                 HireBook hireBook = new HireBook();
-                hireBook.setName(book.getName());
+                hireBook.setIdBook(book.getIdName());
                 hireBook.setQuantity(quantity);
                 hireBook.setDaysHire(daysQuantity);
                 hireBook.setDateTime(LocalDateTime.now());
@@ -49,6 +47,7 @@ public class CustomerArrayList implements InterfaceCustomer
 
         for (Customer customerCurrent : customers) {
             if (customerCurrent.getIdName().equals(idNameCustomer)) {
+                System.out.println("Ma Sach: " + customer.getHireBooksToString());
                 customerCurrent.setHireBooks(hireBooks);
             }
         }
@@ -71,9 +70,11 @@ public class CustomerArrayList implements InterfaceCustomer
         System.out.println("=---------------------------------------------------------------=");
         System.out.println("=                    DANH SACH KHACH HANG                       =");
         System.out.println("=---------------------------------------------------------------=");
-        System.out.printf("%-5s %-10s %-25s %-5s%n", "STT", "Id", "FullName", "Age");
+        System.out.printf("%-5s %-10s %-25s %-5s %-20s %n", "STT", "Id", "FullName", "Age", "Hire Books");
         for (Customer customer : customers) {
-            System.out.printf("%-5d %-10s %-25s %-5d%n", stt, customer.getIdName(), customer.getFullName(), customer.getAge());
+            String hireBooks = customer.getHireBooksToString();
+
+            System.out.printf("%-5d %-10s %-25s %-5d %-20s%n", stt, customer.getIdName(), customer.getFullName(), customer.getAge(), hireBooks);
             stt++;
         }
         System.out.println("=---------------------------------------------------------------=");
@@ -84,11 +85,12 @@ public class CustomerArrayList implements InterfaceCustomer
         for (Customer customersCurrent : customers) {
             if (customersCurrent.getIdName().equals(customer.getIdName())) {
 
-                String customerName = customer.getFullName().equals("abc") ? customer.getFullName() : "";
-
-
-                customersCurrent.setFullName(customer.getFullName());
-                customersCurrent.setAge(customer.getAge());
+                if (!(customer.getFullName().equals("0"))) {
+                    customersCurrent.setFullName(customer.getFullName());
+                }
+                if (!(customer.getAge() == 0)) {
+                    customersCurrent.setAge(customer.getAge());
+                }
             }
         }
     }
@@ -101,9 +103,12 @@ public class CustomerArrayList implements InterfaceCustomer
                 customer.setIdName(c.getIdName());
                 customer.setFullName(c.getFullName());
                 customer.setAge(c.getAge());
+                customer.setHireBooks(c.getHireBooks());
                 return customer;
             }
         }
+
+        customer.showInformation();
         return customer;
     }
 }

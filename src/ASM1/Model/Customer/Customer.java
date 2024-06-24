@@ -61,12 +61,27 @@ public class Customer {
     }
 
     public void showInformation(){
-        String status = (hireBooks == null || hireBooks.isEmpty()) ? "Chưa thuê" : "Đã thuê";
+
         System.out.println("=---------------------------------------------------------------=");
         System.out.println("=                    CHI TIET KHACH HANG                        =");
         System.out.println("=---------------------------------------------------------------=");
         System.out.printf("%-5s %-10s %-25s %-5s %-10s%n", "STT", "Id", "FullName", "Age", "HireBooks");
-        System.out.printf("%-5s %-10s %-25s %-5d %-10s%n", 0, idName, fullName, age, status);
+        System.out.printf("%-5s %-10s %-25s %-5d %-10s%n", 0, idName, fullName, age, this.getHireBooksToString());
         System.out.println("=---------------------------------------------------------------=");
+    }
+
+    public String getHireBooksToString(){
+        String returnString = "";
+        if (hireBooks != null && !hireBooks.isEmpty()){
+            for (HireBook hireBook : hireBooks) {
+                returnString += hireBook.getIdBook() + ",";
+            }
+        }
+        else {
+            returnString = "Chưa thuê";
+        }
+
+
+        return returnString;
     }
 }

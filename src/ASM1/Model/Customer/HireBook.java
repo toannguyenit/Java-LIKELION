@@ -4,15 +4,15 @@ import java.time.LocalDateTime;
 
 public class HireBook {
 
-    String name;
+    String idBook;
     int daysHire;
     LocalDateTime dateTime;
     int quantity;
 
     public HireBook(){}
 
-    public HireBook(String name, int daysHire, LocalDateTime dateTime, int quantity) {
-        this.name = name;
+    public HireBook(String idBook, int daysHire, LocalDateTime dateTime, int quantity) {
+        this.idBook = idBook;
         int daysHired = daysHire;
         this.dateTime = dateTime;
         this.quantity = quantity;
@@ -26,12 +26,12 @@ public class HireBook {
         this.daysHire = daysHire;
     }
 
-    public String getName() {
-        return name;
+    public String getIdBook() {
+        return idBook;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setIdBook(String idBook) {
+        this.idBook = idBook;
     }
 
     public LocalDateTime getDateTime() {
