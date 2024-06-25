@@ -73,7 +73,7 @@ public class CustomerArrayList implements InterfaceCustomer {
         if (customerExample.getIdName().length() > 5) {
             throw new ArithmeticException("Ten ID phai < 5 ky tu!");
         }
-        if (customerExample.getFullName().length() < 25) {
+        if (customerExample.getFullName().length() > 25) {
             throw new ArithmeticException("Ten khach hang phai < 25 ky tu!");
         }
 
