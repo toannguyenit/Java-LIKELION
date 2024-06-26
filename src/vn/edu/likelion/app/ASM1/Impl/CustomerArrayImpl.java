@@ -1,20 +1,20 @@
-package ASM1.Service;
+package vn.edu.likelion.app.ASM1.Impl;
 
 import ASM1.Model.Book.Book;
-import ASM1.Model.Customer.Customer;
-import ASM1.Interface.InterfaceCustomer;
-import ASM1.Model.Customer.HireBook;
+import vn.edu.likelion.app.ASM1.Model.Customer.Customer;
+import vn.edu.likelion.app.ASM1.Model.Customer.HireBook;
+import vn.edu.likelion.app.ASM1.Service.InterfaceCustomer;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class CustomerArrayList implements InterfaceCustomer {
+public class CustomerArrayImpl implements InterfaceCustomer {
     static ArrayList<Customer> customers;
 
-    public CustomerArrayList() {
+    public CustomerArrayImpl() {
     }
 
-    public CustomerArrayList(ArrayList<Customer> customers) {
+    public CustomerArrayImpl(ArrayList<Customer> customers) {
         this.customers = customers;
     }
 
@@ -82,8 +82,6 @@ public class CustomerArrayList implements InterfaceCustomer {
         customer.setAge(customerExample.getAge());
         customers.add(customer);
     }
-
-
 
     @Override
     public void showCustomersDisplay() {

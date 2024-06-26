@@ -1,7 +1,6 @@
-package ASM1.Model.Customer;
+package vn.edu.likelion.app.ASM1.Model.Customer;
 
 import java.util.ArrayList;
-
 public class Customer {
     private String idName;
     private String fullName;

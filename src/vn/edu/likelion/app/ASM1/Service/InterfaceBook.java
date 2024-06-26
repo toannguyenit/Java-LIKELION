@@ -1,7 +1,6 @@
-package ASM1.Interface;
+package ASM1.Service;
 
 import ASM1.Model.Book.Book;
-import ASM1.Model.Customer.Customer;
 
 public interface InterfaceBook {
 

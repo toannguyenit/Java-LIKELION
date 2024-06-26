@@ -1,10 +1,11 @@
-package ASM1;
+package vn.edu.likelion.app.ASM1;
 
-import ASM1.Model.Customer.HireBook;
-import ASM1.Service.BookArrayList;
-import ASM1.Service.CustomerArrayList;
+
 import ASM1.Model.Book.Book;
-import ASM1.Model.Customer.Customer;
+import vn.edu.likelion.app.ASM1.Impl.BookArrayImpl;
+import vn.edu.likelion.app.ASM1.Impl.CustomerArrayImpl;
+import vn.edu.likelion.app.ASM1.Model.Customer.Customer;
+import vn.edu.likelion.app.ASM1.Model.Customer.HireBook;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,8 +15,8 @@ public class Main {
 
     // Initial Static
     static Scanner scanner = new Scanner(System.in);
-    static CustomerArrayList customerArrayList = new CustomerArrayList();
-    static BookArrayList bookArrayList = new BookArrayList();
+    static CustomerArrayImpl customerArrayList = new CustomerArrayImpl();
+    static BookArrayImpl bookArrayList = new BookArrayImpl();
 
     static void showFunctionDisplay() {
         System.out.println("=------------------------------------------=");

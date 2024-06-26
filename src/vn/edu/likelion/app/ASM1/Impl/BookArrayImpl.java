@@ -1,19 +1,18 @@
-package ASM1.Service;
+package vn.edu.likelion.app.ASM1.Impl;
 
-import ASM1.Interface.InterfaceBook;
+import ASM1.Service.InterfaceBook;
 import ASM1.Model.Book.Book;
-import ASM1.Model.Customer.Customer;
 
 import java.util.ArrayList;
 
-public class BookArrayList implements InterfaceBook {
+public class BookArrayImpl implements InterfaceBook {
 
     ArrayList<Book> books;
 
-    public BookArrayList() {
+    public BookArrayImpl() {
     }
 
-    public BookArrayList(ArrayList<Book> books) {
+    public BookArrayImpl(ArrayList<Book> books) {
         this.books = books;
     }
 

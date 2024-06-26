@@ -8,14 +8,19 @@ public class Main {
 //        String string = scanner.nextLine();
 //        System.out.println("Chuoi da nhap: " + string);
 
-        String str = "abc";
-        Scanner scanner = new Scanner(System.in);
-        String str2 = scanner.nextLine();
-
-        System.out.println(str.equals(str2));
-
-        int[] array = {1,3,4,5,6,7};
+//        String str = "abc";
+//        Scanner scanner = new Scanner(System.in);
+//        String str2 = scanner.nextLine();
+//
+//        System.out.println(str.equals(str2));
+//
+//        int[] array = {1,3,4,5,6,7};
 
 //        array[2];
+
+
+        float a =15;
+        float b = 0;
+        float floata = a/b;
     }
 }
