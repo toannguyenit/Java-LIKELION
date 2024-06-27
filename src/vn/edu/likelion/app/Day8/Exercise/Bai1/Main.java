@@ -36,6 +36,7 @@ public class Main {
                 =------------------------------------------=
                 
                 + 30. Output
+                + 0. Thoat
                 """);
     }
 
@@ -141,8 +142,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        // Init database
+        bank.insertCurrentAccount(new CurrentAccount("Song Toan", 28, "Thu Duc", new BigDecimal(2000) ));
 
-//        bank.insertCurrentAccount(new CurrentAccount("Song Toan", 28, "Thu Duc", new BigDecimal(2000) ));
+
         int functionCodeNumber = -1;
         while (functionCodeNumber != 0) {
             showFunctionDisplay();
