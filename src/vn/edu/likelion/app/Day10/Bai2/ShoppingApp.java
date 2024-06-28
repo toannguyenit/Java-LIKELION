@@ -28,20 +28,12 @@ public class ShoppingApp {
             System.out.printf("%-5d %-20s %-10s %-15s%n",
                     product.getProductId(),
                     product.getProductName(),
-                    String.format("%.2f", product.getPrice()) +"$",
+                    String.format("%.2f", product.getPrice()) + "$",
                     Product.getStoreName());
         }
 
         // Tính và hiển thị tổng giá trị của giỏ hàng
-        System.out.println("Tổng giá trị giỏ hàng: " + cart.totalPrice());
-
-
-
-
-
-
-
-
+        System.out.println("Tổng giá trị giỏ hàng: " + cart.totalPrice() + "$");
 
     }
 }
