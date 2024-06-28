@@ -328,6 +328,7 @@ public class Main {
                     break;
                 case 5:
                     addBook();
+                    break;
                 case 6:
                     showBooksDisplay();
                     break;
