@@ -4,7 +4,7 @@ public class Product {
     private int productId;
     private String productName;
     private double price;
-    static final String storeName = "ABC store";
+    private static final String storeName = "ABC store";
 
     public Product() {
 
@@ -39,4 +39,9 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public static String getStoreName() {
+        return storeName;
+    }
+
 }
