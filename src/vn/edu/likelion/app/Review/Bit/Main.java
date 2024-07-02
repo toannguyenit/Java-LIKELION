@@ -1,4 +1,4 @@
-package vn.edu.likelion.app.Bit;
+package vn.edu.likelion.app.Review.Bit;
 
 public class Main {
 

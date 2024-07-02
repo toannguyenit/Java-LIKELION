@@ -1,14 +1,13 @@
 package vn.edu.likelion.app.Day11.Exercise.Bai2.Model;
 
-import vn.edu.likelion.app.Day11.Exercise.Bai1Ver2.Model.Course;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class School {
     private static List<Student> students = new ArrayList<>();
     private static List<Teacher> teachers = new ArrayList<>();
-    private static List<Class> classes = new ArrayList<>();
+    private static List<ClassRoom> classes = new ArrayList<>();
+    private static List<StudentStopStudy> studentStopStudies = new ArrayList<>();
 
     public static List<Student> getStudents() {
         return students;
@@ -26,11 +25,19 @@ public class School {
         School.teachers = teachers;
     }
 
-    public static List<Class> getClasses() {
+    public static List<ClassRoom> getClasses() {
         return classes;
     }
 
-    public static void setClasses(List<Class> classes) {
+    public static void setClasses(List<ClassRoom> classes) {
         School.classes = classes;
+    }
+
+    public static List<StudentStopStudy> getStudentStopStudies() {
+        return studentStopStudies;
+    }
+
+    public static void setStudentStopStudies(List<StudentStopStudy> studentStopStudies) {
+        School.studentStopStudies = studentStopStudies;
     }
 }

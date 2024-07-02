@@ -1,4 +1,4 @@
-package vn.edu.likelion.app.ASM1.Impl;
+package vn.edu.likelion.app.Day6_ASM1.Impl;
 
 import ASM1.Service.InterfaceBook;
 import ASM1.Model.Book.Book;

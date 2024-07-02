@@ -4,15 +4,15 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class Student {
-    private String id;
+    private String id = "";
     private String name;
     private LocalDate birthday;
     private String citizenId;
+
     public Student() {
     }
 
     public Student(String name, LocalDate birthday, String citizenId) {
-        this.id = getUUID();
         this.name = name;
         this.birthday = birthday;
         this.citizenId = citizenId;

@@ -5,12 +5,17 @@ import vn.edu.likelion.app.Day11.Exercise.Bai1Ver2.Model.CourseOnline;
 import vn.edu.likelion.app.Day11.Exercise.Bai1Ver2.Model.Student;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public class CourseApp {
     static ClassRoom lopBEBasic = new ClassRoom();
 
+
     public static void main(String[] args) {
+        lopBEBasic.setStudentCourseMap(new HashMap<Integer, Set<Integer>>());
+
         CourseOnline courseOnline1 =
                 new CourseOnline(1, "Java", "Tuan Mentor", 2, "W3School", 12);
         CourseOnline courseOnline2 =
@@ -48,10 +53,29 @@ public class CourseApp {
         lopBEBasic.addStudent(student5);
 
         // Viet phuong thuc displayDetailCourse() de hien thi chi tiet khoa hoc
-        lopBEBasic.displayDetailCourse(1);
+//        lopBEBasic.displayDetailCourse(1);
 
         // Viet phuong thuc displayStudents() de hien thi cac hoc vien cua khoa
-        lopBEBasic.displayStudents();
+//        lopBEBasic.displayStudents();
+
+        // Them 1 hoc sinh, join 1 courseOneline
+        lopBEBasic.addStudentCourse(1,1);
+        lopBEBasic.addStudentCourse(1,2);
+        lopBEBasic.addStudentCourse(1,3);
+        lopBEBasic.addStudentCourse(2,1);
+        lopBEBasic.addStudentCourse(2,2);
+        lopBEBasic.addStudentCourse(3,1);
+        lopBEBasic.addStudentCourse(2,2);
+
+        System.out.println(lopBEBasic.getStudentCourseMap().get(1));
+
+        // Lay toan bo course cua 1 hoc sinh
+        System.out.println(lopBEBasic.getCoursesByStudentId(2).size());
+        System.out.println(lopBEBasic.getCoursesByStudentId(1).size());
+
+
+
+        // Lay toan bo hoc sinh cua 1 course
 
     }
 }
