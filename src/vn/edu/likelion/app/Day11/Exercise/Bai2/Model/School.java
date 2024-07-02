@@ -6,7 +6,7 @@ import java.util.List;
 public class School {
     private static List<Student> students = new ArrayList<>();
     private static List<Teacher> teachers = new ArrayList<>();
-    private static List<ClassRogit om> classes = new ArrayList<>();
+    private static List<ClassRoom> classes = new ArrayList<>();
     private static List<StudentStopStudy> studentStopStudies = new ArrayList<>();
 
     public static List<Student> getStudents() {
