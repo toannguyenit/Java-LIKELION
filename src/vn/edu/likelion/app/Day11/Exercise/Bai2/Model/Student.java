@@ -6,15 +6,13 @@ import java.util.UUID;
 public class Student {
     private String id = "";
     private String name;
-    private LocalDate birthday;
     private String citizenId;
 
     public Student() {
     }
 
-    public Student(String name, LocalDate birthday, String citizenId) {
+    public Student(String name,String citizenId) {
         this.name = name;
-        this.birthday = birthday;
         this.citizenId = citizenId;
     }
 
@@ -32,14 +30,6 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
     }
 
     public String getCitizenId() {
