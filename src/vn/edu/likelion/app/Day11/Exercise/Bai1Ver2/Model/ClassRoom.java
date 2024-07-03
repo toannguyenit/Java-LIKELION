@@ -57,7 +57,7 @@ public class ClassRoom implements ClassRoomInterface {
         List<CourseOnline> courses = new ArrayList<>();
         for (Map.Entry<Integer, Set<Integer>> entry : studentCourseMap.entrySet()) {
             if (entry.getKey() == studentId) {
-                courses.addAll(courseOnlines);
+//                courses.add
             }
         }
         return courses;

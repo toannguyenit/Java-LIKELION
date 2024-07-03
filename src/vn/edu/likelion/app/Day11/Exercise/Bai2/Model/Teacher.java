@@ -10,6 +10,34 @@ public class Teacher {
     private String name;
     private Set<String> classeIds = new HashSet<>();
 
+    public Teacher(){}
 
+    public Teacher(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<String> getClasseIds() {
+        return classeIds;
+    }
+
+    public void setClasseIds(Set<String> classeIds) {
+        this.classeIds = classeIds;
+    }
 }

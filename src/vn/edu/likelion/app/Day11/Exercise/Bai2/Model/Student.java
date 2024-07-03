@@ -8,20 +8,36 @@ public class Student {
     private String name;
     private String citizenId;
 
+    private LocalDate dateOfBirth;
+
     public Student() {
     }
 
-    public Student(String name,String citizenId) {
+    public Student( String name, String citizenId, LocalDate dateOfBirth) {
+        this.name = name;
+        this.citizenId = citizenId;
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Student(String name, String citizenId) {
         this.name = name;
         this.citizenId = citizenId;
     }
 
-    public String getStudentId() {
+    public String getId() {
         return id;
     }
 
-    public void setStudentId(String studentId) {
-        this.id = studentId;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getName() {
@@ -38,6 +54,13 @@ public class Student {
 
     public void setCitizenId(String citizenId) {
         this.citizenId = citizenId;
+    }
+
+    @Override
+    public String toString(){
+        return "Student: Id: " + id
+                + " name: " + name
+                + " citizenId: " + citizenId;
     }
 
     private String getUUID(){

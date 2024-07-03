@@ -1,28 +1,42 @@
 import javax.swing.*;
+import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
 
+    static class Person{
+        private LocalDate dateOfBirth;
+
+        public LocalDate getDateOfBirth() {
+            return dateOfBirth;
+        }
+
+        public void setDateOfBirth(LocalDate dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+        }
+    }
+
 
     private static Map<Integer, Integer> studentCourseMap = new HashMap<Integer, Integer>();
     public static void main(String[] args) {
-        // Ví dụ thêm dữ liệu vào Map
-        studentCourseMap.put(1, 101);
-        studentCourseMap.put(2, 102);
-        studentCourseMap.put(3, 103);
-        studentCourseMap.put(4, 104);
 
-        // Tạo danh sách để lưu courseId
-        List<Integer> courseIds = new ArrayList<Integer>();
+        Person person =  new Person();
+        person.setDateOfBirth(LocalDate.now());
 
-        // Lặp qua từng phần tử trong Map để lấy courseId
-        for (Map.Entry<Integer, Integer> entry : studentCourseMap.entrySet()) {
-            courseIds.add(entry.getValue());
-        }
+        System.out.println(person.getDateOfBirth());
 
-        // In ra danh sách courseId
-        System.out.println("Danh sách courseId: " + courseIds);
+        person.setDateOfBirth(LocalDate.of(2008, 7, 15));
 
+        System.out.println(person.getDateOfBirth());
+
+
+//
+//        LocalDate date = LocalDate.now();
+//        System.out.println(date);
+//
+//        date.withYear(2025);
+//
+//        System.out.println(date);
 
     }
 }

@@ -1,18 +1,19 @@
 package vn.edu.likelion.app.Day11.Exercise.Bai2.Model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class StudentStopStudy {
     private String citizenId;
     private String reason;
-    private LocalDateTime time;
+    private LocalDate date;
 
     public StudentStopStudy() {}
 
-    public StudentStopStudy(String citizenId, String reason, LocalDateTime time) {
+    public StudentStopStudy(String citizenId, String reason, LocalDate date) {
         this.citizenId = citizenId;
         this.reason = reason;
-        this.time = time;
+        this.date = date;
     }
 
     public void setCitizenId(String citizenId) {
@@ -28,11 +29,15 @@ public class StudentStopStudy {
         this.reason = reason;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public String getCitizenId() {
+        return citizenId;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }
