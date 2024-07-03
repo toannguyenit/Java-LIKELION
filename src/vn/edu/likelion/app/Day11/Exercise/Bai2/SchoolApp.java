@@ -91,6 +91,21 @@ public class SchoolApp {
         Student student13 = new Student("Quoc Thinh 10", "BE0013", LocalDate.of(2003, 7, 15));
         Student student14 = new Student("Quoc Thinh 11", "BE0014", LocalDate.of(2003, 7, 15));
 
+        school.insertStudent(student01);
+        school.insertStudent(student02);
+        school.insertStudent(student03);
+        school.insertStudent(student04);
+        school.insertStudent(student05);
+        school.insertStudent(student06);
+        school.insertStudent(student07);
+        school.insertStudent(student08);
+        school.insertStudent(student09);
+        school.insertStudent(student10);
+        school.insertStudent(student11);
+        school.insertStudent(student12);
+        school.insertStudent(student13);
+        school.insertStudent(student14);
+
 
         // Từ  18-20 tuổi mới được đăng ký học
         // Học viên nào đăng ký thành công sẽ nhận đc mã học viên
@@ -101,15 +116,17 @@ public class SchoolApp {
         System.out.println(student04.toString());
 
         // Cần xem được danh sách các học viên trong lớp và thông tin chi tiết của họ
+        System.out.println("Cần xem được danh sách các học viên trong lớp và thông tin chi tiết của họ: Start");
         String idClass01 = class01.getId();
         Set<String> studentOfClass01 = class01.getStudentIds();
         for (String studentId: studentOfClass01) {
             for (Student student: School.getStudents()) {
-                if (studentId.equals(student.getId())) {
+               if (student.getCitizenId().equals(studentId)) {
                     System.out.println(student.toString());
                 }
             }
         }
+        System.out.println("Cần xem được danh sách các học viên trong lớp và thông tin chi tiết của họ: End");
 
         // Lớp học có thể sắp xếp tối đa 10 bàn
         // Khi đủ học viên thì lớp mới bắt đầu, học viên sẽ được tính ngày giờ nhập học kể từ lúc lớp học bắt đầu
