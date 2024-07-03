@@ -13,68 +13,6 @@ public class SchoolApp {
 
     public static void main(String[] args) {
 
-        // Trường có 3 lớp và 3 giáo viên
-        // Thêm danh sách lớp học
-        System.out.println("""
-                Test case: Trường có 3 lớp và 3 giáo viên Start
-                """);
-        ClassRoom class01 = new ClassRoom("C01", "Lop Java");
-        ClassRoom class02 = new ClassRoom("C02", "Lop PHP");
-        ClassRoom class03 = new ClassRoom("C03", "Lop Python");
-        ClassRoom class04 = new ClassRoom("C04", "Lop JS");
-        school.insertClassRoom(class01); // Thêm lớp thành công
-        school.insertClassRoom(class02); // Thêm lớp thành công
-        school.insertClassRoom(class03); // Thêm lớp thành công
-        school.insertClassRoom(class04); // Lỗi vì quá số lớp
-
-        Teacher teacher1 = new Teacher("T01", "Tuan Mentor");
-        Teacher teacher2 = new Teacher("T02", "Duong Mentor");
-        Teacher teacher3 = new Teacher("T03", "Phuc Mentor");
-        Teacher teacher4 = new Teacher("T04", "Minh Mentor");
-        school.insertTeacher(teacher1);// Thêm giáo viên thành công
-        school.insertTeacher(teacher2);// Thêm giáo viên thành công
-        school.insertTeacher(teacher3);// Thêm giáo viên thành công
-        school.insertTeacher(teacher4);// Lỗi vì quá số giáo viên
-        System.out.println("""
-                Test case: Trường có 3 lớp và 3 giáo viên End
-                ============================================
-                """);
-
-        // mỗi giáo viên dạy 2 lớp,
-        teacher1.insert(class01); // Thêm thành công lớp
-        teacher1.insert(class02);
-        teacher1.insert(class03); // Lỗi over lớp
-
-        // cần xem được danh sách học viên của mỗi giáo viên,
-        String idTeacher1 = teacher1.getId();
-        Set<String> classOfTeacher1 = teacher1.getClasseIds();
-        List<ClassRoom> classRooms = new ArrayList<>();
-        List<String> studentsOfTeacher1 = new ArrayList<>();
-        for (String classId : classOfTeacher1) {
-            for (ClassRoom classRoom: School.getClasses()) {
-                if (classId.equals(classRoom.getId())) {
-                    classRooms.add(classRoom);
-                }
-            }
-        }
-
-        for (ClassRoom classRoom: classRooms) {
-             for (String studentId: classRoom.getStudentIds()) {
-                 studentsOfTeacher1.add(studentId);
-             }
-        }
-
-        for (String studentId: studentsOfTeacher1) {
-            for (Student student: School.getStudents()) {
-                if (studentId.equals(student.getId())) {
-                    System.out.println(student.toString());
-                }
-            }
-        }
-
-
-
-
         // Học viên cần đăng ký đầy đủ các thông tin sau để được vào lớp: Tên, ngày tháng năm sinh, CCCD
         Student student01 = new Student("Trung Kien", "BE0001", LocalDate.of(2000, 7, 15));
         Student student02 = new Student("Song Toan", "BE0002", LocalDate.of(1996, 7, 15));
@@ -106,6 +44,32 @@ public class SchoolApp {
         school.insertStudent(student13);
         school.insertStudent(student14);
 
+        // Trường có 3 lớp và 3 giáo viên
+        // Thêm danh sách lớp học
+        System.out.println("""
+                Test case: Trường có 3 lớp và 3 giáo viên Start
+                """);
+        ClassRoom class01 = new ClassRoom("C01", "Lop Java");
+        ClassRoom class02 = new ClassRoom("C02", "Lop PHP");
+        ClassRoom class03 = new ClassRoom("C03", "Lop Python");
+        ClassRoom class04 = new ClassRoom("C04", "Lop JS");
+        school.insertClassRoom(class01); // Thêm lớp thành công
+        school.insertClassRoom(class02); // Thêm lớp thành công
+        school.insertClassRoom(class03); // Thêm lớp thành công
+        school.insertClassRoom(class04); // Lỗi vì quá số lớp
+
+        Teacher teacher1 = new Teacher("T01", "Tuan Mentor");
+        Teacher teacher2 = new Teacher("T02", "Duong Mentor");
+        Teacher teacher3 = new Teacher("T03", "Phuc Mentor");
+        Teacher teacher4 = new Teacher("T04", "Minh Mentor");
+        school.insertTeacher(teacher1);// Thêm giáo viên thành công
+        school.insertTeacher(teacher2);// Thêm giáo viên thành công
+        school.insertTeacher(teacher3);// Thêm giáo viên thành công
+        school.insertTeacher(teacher4);// Lỗi vì quá số giáo viên
+        System.out.println("""
+                Test case: Trường có 3 lớp và 3 giáo viên End
+                ============================================
+                """);
 
         // Từ  18-20 tuổi mới được đăng ký học
         // Học viên nào đăng ký thành công sẽ nhận đc mã học viên
@@ -114,6 +78,50 @@ public class SchoolApp {
         class01.insert(student03); // Thêm thất bại vì tuổi
         class01.insert(student04); // Thêm thành công và được cập nhật Mã Học viên
         System.out.println(student04.toString());
+
+
+        // mỗi giáo viên dạy 2 lớp,
+        teacher1.insert(class01); // Thêm thành công lớp
+        teacher1.insert(class02);
+        teacher1.insert(class03); // Lỗi over lớp
+
+        // cần xem được danh sách học viên của mỗi giáo viên,
+        System.out.println("cần xem được danh sách học viên của mỗi giáo viên,: Start");
+
+        String idTeacher1 = teacher1.getId();
+        Set<String> classOfTeacher1 = teacher1.getClasseIds();
+        List<ClassRoom> classRooms = new ArrayList<>();
+        List<String> studentsOfTeacher1 = new ArrayList<>();
+        for (String classId : classOfTeacher1) {
+            for (ClassRoom classRoom: School.getClasses()) {
+                if (classId.equals(classRoom.getId())) {
+                    classRooms.add(classRoom);
+                }
+            }
+        }
+
+        for (ClassRoom classRoom: classRooms) {
+             for (String studentId: classRoom.getStudentIds()) {
+                 studentsOfTeacher1.add(studentId);
+             }
+        }
+
+        for (String studentId: studentsOfTeacher1) {
+            for (Student student: School.getStudents()) {
+                if (studentId.equals(student.getCitizenId())) {
+                    System.out.println(student.toString());
+                }
+            }
+        }
+
+        System.out.println("cần xem được danh sách học viên của mỗi giáo viên,: End");
+
+
+
+
+
+
+
 
         // Cần xem được danh sách các học viên trong lớp và thông tin chi tiết của họ
         System.out.println("Cần xem được danh sách các học viên trong lớp và thông tin chi tiết của họ: Start");
