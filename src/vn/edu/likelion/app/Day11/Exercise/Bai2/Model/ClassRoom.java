@@ -11,7 +11,9 @@ import java.util.Set;
 public class ClassRoom implements CRUDInterface<Student> {
     private String id;
     private String name;
+    private int status = 0;
     private Set<String> studentIds = new HashSet<>();
+    private LocalDate date;
 
     private int count = 0;
 
@@ -44,6 +46,14 @@ public class ClassRoom implements CRUDInterface<Student> {
         this.name = name;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public Set<String> getStudentIds() {
         return studentIds;
     }
@@ -51,6 +61,8 @@ public class ClassRoom implements CRUDInterface<Student> {
     public void setStudentIds(Set<String> studentIds) {
         this.studentIds = studentIds;
     }
+
+
 
     @Override
     public String toString(){
@@ -75,6 +87,13 @@ public class ClassRoom implements CRUDInterface<Student> {
         System.out.println("Them thanh cong vao lop " + id);
         count++;
         student.setId(id + "-"+ count);
+        if (studentIds.size() == 10) {
+            date = LocalDate.now();
+            System.out.println("Lop hoc bat dau vao ngay: "  + date );
+            status = 1;
+        } else {
+            status = 0;
+        }
     }
 
     @Override
@@ -94,6 +113,7 @@ public class ClassRoom implements CRUDInterface<Student> {
     @Override
     public void remove(String id) {
         studentIds.remove(id);
+
     }
 
     @Override
