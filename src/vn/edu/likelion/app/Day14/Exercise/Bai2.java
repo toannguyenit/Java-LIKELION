@@ -22,7 +22,6 @@ public class Bai2 {
         result[0] = secondMax;
         result[1] = min;
         return result;
-
     };
 
 
@@ -34,5 +33,12 @@ public class Bai2 {
         System.out.println("The smallest element: " + findSecondMaxAndMin.apply(arr)[1]);
 
 
+//        int second = Arrays.stream(arr).sorted();
+
+
+        int a = 1;
+        double b = 1.0;
+
+        System.out.println(a==b);
     }
 }
